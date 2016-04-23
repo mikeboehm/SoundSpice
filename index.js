@@ -7,8 +7,8 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-  res.send('Hello World!');
   applescript.execString(script, function(err) {});
+  res.send('');
 });
 
 app.listen(3000, function () {
