@@ -7,7 +7,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-
+    console.log('Toggle!');
     applescript.execString(script, function(err) {});
     res.send('');
 });
