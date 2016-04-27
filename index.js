@@ -7,9 +7,13 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
+    res.send('Done! <pre>/toggle</pre> to play/pause again');
+});
+
+app.get('/toggle', function (req, res) {
     console.log('Toggle!');
     applescript.execString(script, function(err) {});
-    res.send('');
+    res.redirect('/');
 });
 
 app.listen(3000, function () {
