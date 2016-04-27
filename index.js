@@ -17,5 +17,6 @@ app.get('/toggle', function (req, res) {
 });
 
 app.listen(3000, function () {
-    console.log('Example app listening on port 3000!');
+    console.log('SoundSpice app listening on port 3000!');
+    console.log('GET /toggle to play/pause music');
 });
