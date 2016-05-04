@@ -7,7 +7,7 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-    res.send('Done! <pre>/toggle</pre> to play/pause again');
+    res.send('<a href="/toggle">Play/pause again</a><pre>/toggle</pre>');
 });
 
 app.get('/toggle', function (req, res) {
