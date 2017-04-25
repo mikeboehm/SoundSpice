@@ -7,11 +7,33 @@ var express = require('express');
 var app = express();
 
 app.get('/', function (req, res) {
-    res.send('<a href="/toggle">Play/pause again</a><pre>/toggle</pre>');
+    var timestamp = Math.round(new Date().getTime()/1000).toString();
+
+    res.send('<a href="/toggle/?timestamp=' + timestamp + '">Play/pause again</a><pre>/toggle</pre>');
 });
 
-app.get('/toggle', function (req, res) {
-    console.log('Toggle!');
+// Using a timestamp to make sure the request is fresh
+// I had an issue where my browser was trying to fetch the thumbnail and toggling the music
+app.get('/toggle/', function (req, res) {
+    var now = Math.round(new Date().getTime()/1000).toString();
+
+    var timestamp = req.query.timestamp || 1;
+    diff = now - timestamp;
+
+    if(diff <= 100) {
+        console.log('Toggle!');
+        applescript.execString(script, function(err) {});
+    } else {
+      console.log('Toggle diff too large ' + diff);
+      console.log('IP: ' + req.ip);
+    }
+
+    res.redirect('/');
+});
+
+// Use this as an API, rather than in a browser
+app.get('/flic', function (req, res) {
+    console.log('Force Toggle!');
     applescript.execString(script, function(err) {});
     res.redirect('/');
 });
