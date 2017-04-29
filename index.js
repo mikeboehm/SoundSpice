@@ -21,11 +21,10 @@ app.get('/toggle/', function (req, res) {
     diff = now - timestamp;
 
     if(diff <= 100) {
-        console.log('Toggle!');
+        console.log(new Date().toISOString() + ' ' + req.ip + ' Toggle!');
         applescript.execString(script, function(err) {});
     } else {
-      console.log('Toggle diff too large ' + diff);
-      console.log('IP: ' + req.ip);
+      console.log(new Date().toISOString() + ' ' + req.ip + ' Invalid timestamp');
     }
 
     res.redirect('/');
